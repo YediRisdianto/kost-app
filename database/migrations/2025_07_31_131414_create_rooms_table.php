@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('room_type');
             $table->integer('square_feet')->nullable();
+            $table->integer('capacity');
             $table->decimal('price_per_month', 10, 2);
             $table->boolean('is_available')->default(true);
             $table->timestamps();
