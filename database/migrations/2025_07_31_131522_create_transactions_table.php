@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('duration');
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->date('transaction_date')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

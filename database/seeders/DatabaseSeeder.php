@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,6 +19,16 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Hotel',
+            'slug' => 'hotel',
+        ]);
+
+        DB::table('cities')->insert([
+            'name' => 'Bandung',
+            'slug' => 'bandung',
         ]);
     }
 }

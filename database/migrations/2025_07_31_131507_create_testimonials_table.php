@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('boarding_house_id')->constrained()->onDelete('cascade');
             $table->string('photo')->nullable();
-            $table->text('content');
+            $table->text('name')->nullable();
+            $table->text('content')->nullable();
             $table->integer('rating')->default(5);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('capacity');
             $table->decimal('price_per_month', 10, 2);
             $table->boolean('is_available')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
