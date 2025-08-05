@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Interface\CategoryRepositoryInterface;
+use App\Models\Category;
+
+Class CategoryRepository implements CategoryRepositoryInterface
+{
+    public function getAllCategories()
+    {
+        return Category::all();
+    }
+
+}
