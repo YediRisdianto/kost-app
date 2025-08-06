@@ -11,5 +11,10 @@ Class CategoryRepository implements CategoryRepositoryInterface
     {
         return Category::all();
     }
+    
+    public function getCategoryBySlug($slug)
+    {
+        return Category::where('slug', $slug)->firstOrFail();
+    }
 
 }
