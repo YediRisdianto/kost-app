@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interface;
+namespace App\Interfaces;
 
 interface BoardingHouseRepositoryInterface
 {
@@ -14,4 +14,5 @@ interface BoardingHouseRepositoryInterface
 
     public function getBoardingHouseBySlug($slug);
 
+    public function getBoardingHouseRoomById($id);
 }

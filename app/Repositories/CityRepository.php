@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Interface\CityRepositoryInterface;
+use App\Interfaces\CityRepositoryInterface;
 use App\Models\City;
 
 Class CityRepository implements CityRepositoryInterface
