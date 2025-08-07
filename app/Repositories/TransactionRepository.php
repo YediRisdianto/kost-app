@@ -58,7 +58,7 @@ Class TransactionRepository implements TransactionRepositoryInterface
     {
         $subTotal = $pricePerMonth * $duration;
         $ppn = $subTotal * 0.11;
-        $insurance = $subTotal * 0.05;
+        $insurance = $subTotal * 0.01;
         return $subTotal + $ppn + $insurance;
     }
 
