@@ -47,11 +47,7 @@ class TransactionResource extends Resource
                         'full_payment' => 'Full Payment',
                     ])
                     ->required(),
-                Forms\Components\Select::make('payment_status')
-                    ->options([
-                        'pending' => 'Pending',
-                        'paid' => 'Paid',
-                    ])
+                Forms\Components\TextInput::make('payment_status')
                     ->required(),
                 Forms\Components\DatePicker::make('start_date')
                     ->required(),
@@ -71,7 +67,7 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('code '),
+                Tables\Columns\TextColumn::make('code'),
                 Tables\Columns\TextColumn::make('boardingHouse.name')->label('Boarding House'),
                 Tables\Columns\TextColumn::make('room.name')->label('Room'),
                 Tables\Columns\TextColumn::make('name'),

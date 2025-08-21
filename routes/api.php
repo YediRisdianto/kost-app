@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\MidtransController;
+use App\Http\Controllers\Api\MidtransCallbackController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/midtrans-callback', [MidtransController::class, 'callback']);
+Route::post('/midtrans-callback', [MidtransCallbackController::class, 'callback']);
