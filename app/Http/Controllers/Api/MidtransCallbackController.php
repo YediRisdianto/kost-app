@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Twilio\Rest\Client;
 
 class MidtransCallbackController extends Controller
 {
@@ -25,6 +26,20 @@ class MidtransCallbackController extends Controller
             return response()->json(['message' => 'Transaction not found'], 404);
         }
 
+        $sid    = env('TWILIO_SID');
+        $token  = env('TWILIO_TOKEN');
+        $twilio = new Client($sid, $token);
+
+        $message = 
+            "Halo, " . $transaction->name . "!" . PHP_EOL .
+            "Kami telah menerima pembayaran Anda dengan kode booking: " . $transaction->code . "." . PHP_EOL . 
+            "Total Pembayaran: Rp " . number_format($transaction->total_amount, 0, ',', '.') . PHP_EOL . PHP_EOL .
+            "Anda bisa datang ke: " . $transaction->boardingHouse->name . PHP_EOL . 
+            "Alamat: " . $transaction->boardingHouse->address . PHP_EOL . 
+            "Tanggal: " . date('d-m-Y', strtotime($transaction->start_date)) . PHP_EOL . PHP_EOL . 
+            "Terima kasih atas kepercayaan Anda! 😊" . PHP_EOL .
+            "Kami tunggu kedatangan Anda!";
+
         switch ($transactionStatus) {
             case 'capture':
                 if ($request->payment_type == 'credit_card') {
@@ -37,6 +52,16 @@ class MidtransCallbackController extends Controller
                 break;
             case 'settlement':
                 $transaction->update(['payment_status' => 'success']);
+
+                $twilio->messages
+                    ->create(
+                        "whatsapp:+" . $transaction->phone_number, 
+                        array(
+                            "from" => "whatsapp:+14155238886",
+                            "body" => $message
+                        )
+                    );
+
                 break;
             case 'pending':
                 $transaction->update(['payment_status' => 'pending']);
